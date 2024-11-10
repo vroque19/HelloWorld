@@ -10,7 +10,8 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var name: String = "world"
-    var body: some View { 
+    @State private var is_active: Bool = false
+    var body: some View {
         ZStack {
             Color.blue
             VStack {
@@ -20,7 +21,7 @@ struct ContentView: View {
                     .foregroundStyle(.tint)
                 Text("Hello, \(name)!" ).font(.largeTitle).foregroundColor(skyBlue)
                 Button(action: {
-                    name="Vanessa"
+                    clicked()
                 }) {
                     Text("say hi")
                         .background(skyBlue).foregroundColor(.black).cornerRadius(5).padding()
@@ -29,7 +30,16 @@ struct ContentView: View {
         }
         .padding()
     }
+    func clicked() {
+        is_active = true
+        name = "Vanessa"
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            is_active = false
+            name = "world"
+        }
+    }
 }
+
 
 #Preview {
     ContentView()
