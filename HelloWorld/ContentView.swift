@@ -7,13 +7,25 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+    @State private var name: String = "world"
+    var body: some View { 
+        ZStack {
+            Color.blue
+            VStack {
+                let skyBlue = Color(red: 0.4627, green: 0.8392, blue: 1.0)
+                Image(systemName: "heart")
+                    .imageScale(.large).foregroundColor(skyBlue)
+                    .foregroundStyle(.tint)
+                Text("Hello, \(name)!" ).font(.largeTitle).foregroundColor(skyBlue)
+                Button(action: {
+                    name="Vanessa"
+                }) {
+                    Text("say hi")
+                        .background(skyBlue).foregroundColor(.black).cornerRadius(5).padding()
+                }
+            }
         }
         .padding()
     }
